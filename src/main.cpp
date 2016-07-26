@@ -1,10 +1,12 @@
 #include <stdio.h>
+#ifdef __APPLE__
+#   define GLFW_INCLUDE_GLCOREARBß
+#endif
 #include <GLFW/glfw3.h>
 #include "Docment.h"
 
 void init(){
     glClearColor(0.5f,0.0f,0.0f,1.0f);
-
     Docment doc;
     doc.load("/home/ld016/web-app/cRender/testModel/test/test.obj");
 }
@@ -17,7 +19,7 @@ int main(void)
     if (!glfwInit())
         return -1;
 
-#ifdef __MAC__
+#ifdef __APPLE__
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
@@ -36,7 +38,7 @@ int main(void)
     /* Make the window's context current */
     glfwMakeContextCurrent(window);
 
-    printf("gl vertion: %s\n",glGetString(GL_VERSION));
+    printf("gl version: %s\n",glGetString(GL_VERSION));
 
     /* Loop until the user closes the window */
     init();
